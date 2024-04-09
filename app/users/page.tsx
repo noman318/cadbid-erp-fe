@@ -1,9 +1,10 @@
+import UserAddForm from "@/components/Users/UserAddForm";
 import React from "react";
 
 const UsersPage = () => {
   return (
-    <div>
-      <h1>Create Users</h1>
+    <div className="container mx-auto">
+      <UserAddForm />
     </div>
   );
 };

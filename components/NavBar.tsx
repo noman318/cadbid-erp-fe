@@ -17,35 +17,36 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
+import Link from "next/link";
 
 const products = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
+    name: "Create Product",
+    description: "Main Product",
     href: "#",
     icon: ChartPieIcon,
   },
   {
-    name: "Engagement",
-    description: "Speak directly to your customers",
+    name: "Product Category",
+    description: "Create different categories",
     href: "#",
     icon: CursorArrowRaysIcon,
   },
   {
-    name: "Security",
-    description: "Your customers’ data will be safe and secure",
+    name: "Product Group",
+    description: "Group of Projects",
     href: "#",
     icon: FingerPrintIcon,
   },
   {
-    name: "Integrations",
-    description: "Connect with third-party tools",
+    name: "Product Library",
+    description: "All products configuration at one place",
     href: "#",
     icon: SquaresPlusIcon,
   },
   {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
+    name: "Product Library Group",
+    description: "Library Group",
     href: "#",
     icon: ArrowPathIcon,
   },
@@ -69,16 +70,16 @@ const NavBar = () => {
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <Image
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="/logo.png"
                 alt=""
                 height={40}
                 width={40}
               />
-            </a>
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -137,7 +138,7 @@ const NavBar = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                  {/* <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                     {callsToAction.map((item) => (
                       <a
                         key={item.name}
@@ -151,37 +152,37 @@ const NavBar = () => {
                         {item.name}
                       </a>
                     ))}
-                  </div>
+                  </div> */}
                 </Popover.Panel>
               </Transition>
             </Popover>
 
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Features
-            </a>
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Marketplace
-            </a>
-            <a
-              href="#"
+            <Link
+              href="/company"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Company
-            </a>
+            </Link>
+            <Link
+              href="/users"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Users
+            </Link>
+            <Link
+              href="/#"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              System
+            </Link>
           </Popover.Group>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
+            <Link
               href="#"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           </div>
         </nav>
         <Dialog

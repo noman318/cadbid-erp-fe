@@ -18,6 +18,7 @@ import {
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { IoMdNotificationsOutline } from "react-icons/io";
 
 const products = [
   {
@@ -64,9 +65,9 @@ const NavBar = () => {
 
   return (
     <nav>
-      <header className="bg-white">
+      <header className="bg-white border-b-2 border-gray-300">
         <nav
-          className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 border-b-2 border-gray-300"
+          className="mx-auto flex max-w-[92rem] items-center justify-between p-6 lg:px-8"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
@@ -176,7 +177,8 @@ const NavBar = () => {
               System
             </Link>
           </Popover.Group>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-2">
+            <IoMdNotificationsOutline />
             <Link
               href="#"
               className="text-sm font-semibold leading-6 text-gray-900"

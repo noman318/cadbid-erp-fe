@@ -27,6 +27,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useCreateUserMutation } from "@/slices/userApiSlice";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -40,9 +41,12 @@ const formSchema = z.object({
   con_password: z.string().min(5),
   level: z.string(),
   otp_auth: z.string(),
+  company_id: z.string(),
 });
 
 const UserNav = () => {
+  const [createUser, { isLoading, isError, isSuccess }] =
+    useCreateUserMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,16 +58,28 @@ const UserNav = () => {
       password: "",
       con_password: "",
       level: "",
+      otp_auth: "",
+      company_id: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // ✅ This will be type-safe and validated.
-    console.log("values", values);
+    // console.log("values", values);
     if (values.password !== values.con_password) {
       alert("Password Mismatch");
     }
-    const { name, user_id, user_type, mobile, email, password, level } = values;
+    const {
+      name,
+      user_id,
+      user_type,
+      mobile,
+      email,
+      password,
+      level,
+      otp_auth,
+      company_id,
+    } = values;
     const newValues = {
       name,
       user_id,
@@ -72,8 +88,16 @@ const UserNav = () => {
       email,
       password,
       level,
+      company_id,
+      otp_auth,
     };
-    // console.log('newValues', newValues)
+    // console.log("newValues", newValues);
+    try {
+      await createUser(newValues);
+    } catch (error) {
+      console.log("error", error);
+      alert(error);
+    }
   }
 
   return (
@@ -107,6 +131,24 @@ const UserNav = () => {
                       <FormControl>
                         <Input
                           placeholder="Customer Name"
+                          className=" placeholder:font-thin"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormDescription></FormDescription>
+                      <FormMessage className="text-red-500" />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="company_id"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Company Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder=""
                           className=" placeholder:font-thin"
                           {...field}
                         />

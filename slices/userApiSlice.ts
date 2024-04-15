@@ -11,8 +11,8 @@ export const userApiSlce = apiSlice.injectEndpoints({
       }),
     }),
     getAlluser: builder.query({
-      query: ({ page, perPage }) => ({
-        url: `${USER_URL}?page=${page}&perPage=${perPage}`,
+      query: () => ({
+        url: `${USER_URL}`,
       }),
     }),
   }),

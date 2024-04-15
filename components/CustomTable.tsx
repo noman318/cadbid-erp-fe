@@ -47,6 +47,15 @@ interface User {
   sUserName: string;
   sUserType: string;
 }
+function formatUserType(sUserType: string) {
+  // Remove first character if it's lowercase
+  if (sUserType.charAt(0) === sUserType.charAt(0).toLowerCase()) {
+    sUserType = sUserType.substring(1);
+  }
+
+  // Split string where there is camel casing
+  return sUserType.split(/(?=[A-Z])/).join(" ");
+}
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -159,21 +168,14 @@ export function CustomTable() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-  const [pagination, setPagination] = React.useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 5,
-  });
-  const {
-    data: newData,
-    isLoading,
-    refetch,
-  } = useGetAlluserQuery({
-    page: pagination.pageIndex + 1,
-    perPage: pagination.pageSize,
-  });
+
+  const { data: newData, isLoading, refetch } = useGetAlluserQuery({});
   const tableData = newData?.users;
   // console.log("newData", newData?.users);
   // console.log("tableData", tableData);
+  React.useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   // console.log("userNew", userNew);
   const [columnVisibility, setColumnVisibility] =
@@ -191,13 +193,11 @@ export function CustomTable() {
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
-    onPaginationChange: setPagination,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
       rowSelection,
-      pagination,
     },
   });
 
@@ -239,7 +239,7 @@ export function CustomTable() {
                             column.toggleVisibility(!!value)
                           }
                         >
-                          {column.id}
+                          {formatUserType(column.id)}
                         </DropdownMenuCheckboxItem>
                       );
                     })}
@@ -301,24 +301,6 @@ export function CustomTable() {
               <div className="flex-1 text-sm text-muted-foreground">
                 {table?.getFilteredSelectedRowModel()?.rows?.length} of{" "}
                 {table?.getFilteredRowModel()?.rows?.length} row(s) selected.
-              </div>
-              <div className="space-x-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => table?.previousPage()}
-                  disabled={!table?.getCanPreviousPage()}
-                >
-                  Previous
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => table?.nextPage()}
-                  disabled={!table?.getCanNextPage()}
-                >
-                  Next
-                </Button>
               </div>
             </div>
           </React.Fragment>

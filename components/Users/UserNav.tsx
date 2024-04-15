@@ -190,7 +190,7 @@ const UserNav = () => {
                       </FormItem>
                     )}
                   />
-                  <FormField
+                  {/* <FormField
                     control={form.control}
                     name="user_id"
                     render={({ field }) => (
@@ -237,7 +237,7 @@ const UserNav = () => {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
 
                   <FormField
                     control={form.control}
@@ -283,18 +283,18 @@ const UserNav = () => {
                           >
                             <FormItem className="flex items-center space-x-3 space-y-0">
                               <FormControl>
-                                <RadioGroupItem value="employee" />
+                                <RadioGroupItem value="normal" />
                               </FormControl>
                               <FormLabel className="font-normal whitespace-nowrap">
-                                Employee{" "}
+                                Normal{" "}
                               </FormLabel>
                             </FormItem>
                             <FormItem className="flex items-center space-x-3 space-y-0">
                               <FormControl>
-                                <RadioGroupItem value="associate" />
+                                <RadioGroupItem value="admin" />
                               </FormControl>
                               <FormLabel className="font-normal whitespace-nowrap">
-                                Associate
+                                Admin
                               </FormLabel>
                             </FormItem>
                           </RadioGroup>
@@ -303,7 +303,7 @@ const UserNav = () => {
                       </FormItem>
                     )}
                   />
-                  <FormField
+                  {/* <FormField
                     control={form.control}
                     name="level"
                     render={({ field }) => (
@@ -336,7 +336,7 @@ const UserNav = () => {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
                 </div>
 
                 <Button type="submit" className="mt-6" disabled={isLoading}>

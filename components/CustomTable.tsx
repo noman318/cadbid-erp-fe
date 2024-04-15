@@ -210,7 +210,7 @@ export function CustomTable() {
           <React.Fragment>
             <div className="flex items-center py-4">
               <Input
-                placeholder="Filter emails..."
+                placeholder="Search emails..."
                 value={
                   (table.getColumn("sEmail")?.getFilterValue() as string) ?? ""
                 }

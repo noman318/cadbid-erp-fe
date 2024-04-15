@@ -10,7 +10,12 @@ export const userApiSlce = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
+    getAlluser: builder.query({
+      query: ({ page, perPage }) => ({
+        url: `${USER_URL}?page=${page}&perPage=${perPage}`,
+      }),
+    }),
   }),
 });
 
-export const { useCreateUserMutation } = userApiSlce;
+export const { useCreateUserMutation, useGetAlluserQuery } = userApiSlce;

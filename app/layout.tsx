@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import StoreProvider from "./StoreProvider";
+// import SideBar from "@/components/SideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,8 @@ export default function RootLayout({
       <StoreProvider>
         <body className={inter.className} aria-label="main_body">
           <NavBar />
-          {children}
+          {/* <SideBar /> */}
+          <div aria-label="all-children">{children}</div>
         </body>
       </StoreProvider>
     </html>

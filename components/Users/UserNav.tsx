@@ -28,6 +28,8 @@ import {
 } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCreateUserMutation } from "@/slices/userApiSlice";
+import CustomDropdown from "../CustomDropdown";
+import { TfiReload } from "react-icons/tfi";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -106,7 +108,8 @@ const UserNav = () => {
         <CiMenuBurger />
         <h1 className="text-xl">User</h1>
       </div>
-      <div className="max-w-lg">
+      <div className="max-w-lg flex items-center">
+        <CustomDropdown />
         <Dialog>
           <DialogTrigger asChild>
             <Button>
@@ -336,7 +339,7 @@ const UserNav = () => {
                   />
                 </div>
 
-                <Button type="submit" className="mt-6">
+                <Button type="submit" className="mt-6" disabled={isLoading}>
                   Add User
                 </Button>
                 {/* <Button type="submit">Submit</Button> */}
